@@ -83,13 +83,18 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
         {errors.fullName && <p className="text-red-500">{errors.fullName.message}</p>}
 
         {/* Email */}
-        <input
-          {...register("email", { required: "Email is required" })}
-          className="w-full p-3 text-black rounded mb-3"
-          placeholder="Enter your email"
-        />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-
+       <input
+         {...register("email", {
+           required: "Email is required",
+           pattern: {
+             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+             message: "Invalid email format",
+          },
+        })}
+        className="w-full p-3 text-black rounded mb-3"
+        placeholder="Enter your email"
+      />
+      {errors.email && <p className="text-red-500">{errors.email.message}</p>}
         {/* About the Project */}
         <textarea
           {...register("message")}
