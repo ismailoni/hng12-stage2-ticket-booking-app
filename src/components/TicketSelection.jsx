@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const TicketSelection = ({ onNext, formData }) => {
-  const [ticketType, setTicketType] = useState(formData.ticketType || "");
+  const [ticketType, setTicketType] = useState(formData.ticketType || "Regular");
   const [ticketAmount, setTicketAmount] = useState(formData.ticketAmount || "1");
 
   useEffect(() => {
