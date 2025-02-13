@@ -52,7 +52,8 @@ export default {
   		},
 		fontFamily: {
 			roboto: 'var(--font-roboto)',
-			roadrage: 'var(--font-roadrage)'
+			roadrage: 'var(--font-roadrage)',
+			jeju: ['"Jeju Myeongjo"']
 		},
   		borderRadius: {
   			lg: 'var(--radius)',

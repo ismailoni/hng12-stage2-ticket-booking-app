@@ -18,8 +18,23 @@ const TicketSelection = ({ onNext, formData }) => {
   };
 
   return (
-    <div className="p-6 bg-gray-800 rounded-lg text-white">
-      <h2 className="text-xl font-semibold mb-4">Select Your Ticket</h2>
+    <div>
+      <header className="mb-8">
+        <div className="flex justify-between font-jeju items-center">
+          <h1 className="text-[32px]">
+            Ticket Selection
+          </h1>
+          <span>Step 1/3</span>
+        </div>
+        <div className="mt-2 h-1 bg-[#0E464F] relative">
+          <div className="bg-[#24A0B5] h-1 w-1/3"></div>
+        </div>
+      </header>
+      <section className="bg-[#08252B] border border-[#0E464F] rounded-[32px] p-6">
+        <div className="border-b-[2px] border-x-[2px] border-[#07373F] p-6 rounded-[24px]">
+          <h1 className="font-roadrage text-[62px] text-[#fafafa]">Techember Fest ”25</h1>
+        </div>
+      </section>
       
       <ToggleGroup type="single" value={ticketType} onValueChange={setTicketType} className="flex space-x-2">
         {[
