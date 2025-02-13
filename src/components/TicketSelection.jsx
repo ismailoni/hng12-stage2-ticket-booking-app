@@ -94,7 +94,7 @@ const TicketSelection = ({ onNext, formData }) => {
           type="single"
           value={ticketType}
           onValueChange={setTicketType}
-          className="grid grid-cols-1 md:grid-cols-3 md:gap-2 bg-[#052228] border border-[#07373F] p-4 rounded-[24px]"
+          className="grid grid-cols-1 lg:grid-cols-3 md:gap-2 bg-[#052228] border border-[#07373F] p-4 rounded-[24px]"
         >
           {[
             {
@@ -134,7 +134,7 @@ const TicketSelection = ({ onNext, formData }) => {
             ))}
           </select>
         </section>
-        <section className="flex font-jeju gap-4 md:gap-6 flex-col-reverse md:flex-row">
+        <section className="flex font-jeju gap-4 md:gap-6 flex-col-reverse lg:flex-row">
           <button
             onClick={handleNewBooking}
             className="mt-4 w-full bg-transparent border border-[#24A0B5] hover:bg-[#24A0B5] text-white px-4 py-2 rounded-[8px] transition-all"

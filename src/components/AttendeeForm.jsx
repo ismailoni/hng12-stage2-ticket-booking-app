@@ -140,7 +140,7 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
             />
 
             {/* Buttons */}
-            <div className="flex font-jeju gap-4 flex-col-reverse md:flex-row">
+            <div className="flex font-jeju gap-4 flex-col-reverse lg:flex-row">
               <button
                 type="button"
                 className="mt-4 w-full bg-transparent border border-[#24A0B5] hover:bg-[#24A0B5] text-white px-4 py-2 rounded-[8px] transition-all"
