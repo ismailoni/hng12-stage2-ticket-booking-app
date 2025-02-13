@@ -3,14 +3,14 @@ import "./globals.css";
 import Navbar from "@/components/NavBar";
 
 const roboto = Roboto({
-  variable: "font-roboto",
+  variable: "--font-roboto",
   weight: ["400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
 const roadrage = Road_Rage({
-  variable: "font-roadrage",
+  variable: "--font-roadrage",
   weight: "400",
   subsets: ["latin"],
   display: "swap",

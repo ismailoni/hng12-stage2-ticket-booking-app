@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
+import { CloudDownloadIcon, UploadCloud } from "lucide-react";
+import Image from "next/image";
 
 const AttendeeForm = ({ onNext, formData, onPrev }) => {
   const {
@@ -50,7 +52,10 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
     }
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: "image/*" });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+  });
 
   const onSubmit = (data) => {
     if (!avatarPreview) {
@@ -61,55 +66,99 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
   };
 
   return (
-    <div className="p-6 bg-gray-900 text-white rounded-lg">
-      <h2 className="text-2xl font-semibold mb-4">Attendee Details</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/* Avatar Upload */}
-        <div {...getRootProps()} className="border-2 border-dashed border-gray-500 rounded-lg p-6 text-center cursor-pointer mb-4">
-          <input {...getInputProps()} />
-          {avatarPreview ? (
-            <img src={avatarPreview} alt="Avatar" className="w-32 h-32 mx-auto rounded-full" />
-          ) : (
-            <p className="text-gray-400">Drag & drop or click to upload</p>
-          )}
+    <div>
+      <header className="mb-8">
+        <div className="flex justify-between font-jeju items-center">
+          <h1 className="text-[32px]">Attendee Details</h1>
+          <span>Step 2/3</span>
         </div>
-
-        {/* Full Name */}
-        <input
-          {...register("fullName", { required: "Full name is required" })}
-          className="w-full p-3 text-black rounded mb-3"
-          placeholder="Enter your name"
-        />
-        {errors.fullName && <p className="text-red-500">{errors.fullName.message}</p>}
-
-        {/* Email */}
-       <input
-         {...register("email", {
-           required: "Email is required",
-           pattern: {
-             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-             message: "Invalid email format",
-          },
-        })}
-        className="w-full p-3 text-black rounded mb-3"
-        placeholder="Enter your email"
-      />
-      {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-        {/* About the Project */}
-        <textarea
-          {...register("message")}
-          className="w-full p-3 text-black rounded mb-3"
-          placeholder="About the project"
-        />
-
-        {/* Buttons */}
-        <div className="flex justify-between">
-          <button type="button" className="px-4 py-2 bg-gray-700 text-white rounded" onClick={onPrev}>Back</button>
-          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded" disabled={uploading}>
-            {uploading ? "Uploading..." : "Get My Free Ticket"}
-          </button>
+        <div className="mt-2 h-1 bg-[#0E464F] relative">
+          <div className="bg-[#24A0B5] h-1 w-1/2"></div>
         </div>
-      </form>
+      </header>
+      <section className="bg-[#08252B] border border-[#0E464F] rounded-[32px] p-6">
+        <div className="font-roboto text-[#fafafa]">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="mb-8 bg-[#052228] border border-[#07373F] rounded-[24px] p-6">
+              <p>Upload Profile Photo</p>
+              {/* Avatar Upload */}
+              <div
+                {...getRootProps()}
+                className="flex border-2 w-full h-[200px] border-black rounded-lg text-center cursor-pointer mt-8 mb-7 justify-center"
+              >
+                <input {...getInputProps()} />
+                <div className="flex flex-row justify-center bg-[#0E464F] -mt-5 text-white rounded-[32px] border-4 border-[#24A0B5] w-[240px] h-[240px]">
+                  {avatarPreview ? (
+                    <img
+                      src={avatarPreview}
+                      alt="Avatar"
+                      className="w-full h-full object-cover rounded-[28px]"
+                    />
+                  ) : (
+                    <p className="text-white self-center  max-w-[192px]">
+                      <Image src='/cloud-download.svg' alt="Upload" width={32} height={32} className="mx-auto"/>
+                      <span className="text-[16px]">Drag & drop or click to upload</span>
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full h-1 bg-[#07373F] my-8"></div>
+            
+            {/* Full Name */}
+            <label htmlFor="fullName" className="text-[#fafafa]">Enter your name: *</label>
+            <input
+              {...register("fullName", { required: "Full name is required" })}
+              className="w-full p-3 text-white mt-2 mb-8 bg-transparent border border-[#07373F] rounded-[12px]"
+            />
+            {errors.fullName && (
+              <p className="text-red-500">{errors.fullName.message}</p>
+            )}
+
+            {/* Email */}
+            <label htmlFor="email" className="text-[#fafafa]">Enter your email: *</label>
+            <input
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Invalid email format",
+                },
+              })}
+              className="w-full p-3 text-white mt-2 mb-8 bg-transparent border border-[#07373F] rounded-[12px]"
+            />
+            {errors.email && (
+              <p className="text-red-500">{errors.email.message}</p>
+            )}
+            {/* About the Project */}
+            <label htmlFor="email" className="text-[#fafafa]">Special request?</label>
+            <textarea
+              {...register("message")}
+              className="w-full p-3 text-white mt-2 mb-8 bg-transparent border border-[#07373F] rounded-[12px]"
+              placeholder="Textarea"
+            />
+
+            {/* Buttons */}
+            <div className="flex font-jeju gap-4 flex-col-reverse md:flex-row">
+              <button
+                type="button"
+                className="mt-4 w-full bg-transparent border border-[#24A0B5] hover:bg-[#24A0B5] text-white px-4 py-2 rounded-[8px] transition-all"
+                onClick={onPrev}
+              >
+                Back
+              </button>
+              <button
+                type="submit"
+                className="mt-4 bg-[#24A0B5] w-full hover:bg-transparent border border-[#24A0B5] text-white px-4 py-2 rounded-[8px] transition-all"
+                disabled={uploading}
+              >
+                {uploading ? "Uploading..." : "Get My Free Ticket"}
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
     </div>
   );
 };

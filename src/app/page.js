@@ -49,7 +49,7 @@ const MultiStepForm = () => {
   };
 
   return (
-    <div className="max-w-[700px] mx-auto mt-10 p-6 bg-[#041E23] border border-[#0E464F] text-white rounded-lg shadow-lg">
+    <div className="max-w-[700px] mx-auto my-10 p-6 bg-[#041E23] border border-[#0E464F] text-white rounded-lg shadow-lg">
       {step === 1 && <TicketSelection onNext={handleNext} formData={formData} />}
       {step === 2 && <AttendeeForm onNext={handleNext} onPrev={handlePrev} formData={formData} />}
       {step === 3 && <TicketDisplay userData={formData} onPrev={handlePrev} />}
