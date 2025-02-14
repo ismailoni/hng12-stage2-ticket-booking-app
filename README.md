@@ -6,7 +6,6 @@ A conference ticket booking app built using **Next.js**, **Tailwind CSS**, and *
 [Click here to view the live app](https://hng12-stage2-ticket-booking-app.vercel.app/)
 
 ## 📸 Screenshots
-(Add screenshots of your app here if needed)
 
 ## 🛠 Features
 - 🎟️ **Ticket Booking** - Users can generate a digital ticket.
