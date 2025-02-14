@@ -98,6 +98,11 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
                       alt="Uploaded avatar preview"
                       className="w-full h-full object-cover rounded-[28px]"
                     />
+                  ) : uploading ? (
+                    <div className=''>
+                      <Loader2 size='3rem' className='w-6 h-6 animate-spin' />
+                      <span className='text-sm font-medium'>Uploading avatar...</span>
+                  </div>
                   ) : (
                     <p className="text-white self-center max-w-[192px]">
                       <Image
@@ -114,11 +119,6 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
                   )}
                 </div>
               </div>
-              {uploading && (
-                <p role="status" aria-live="polite" className="text-yellow-300">
-                  Uploading image...
-                </p>
-              )}
             </div>
 
             <div className="w-full h-1 bg-[#07373F] my-8"></div>
@@ -185,10 +185,9 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
               <button
                 type="submit"
                 className="mt-4 bg-[#24A0B5] w-full hover:bg-transparent border border-[#24A0B5] text-white px-4 py-2 rounded-[8px] transition-all"
-                disabled={uploading}
                 aria-label="Proceed to the next step"
               >
-                {uploading ? "Uploading..." : "Get My Free Ticket"}
+                Get My Free Ticket
               </button>
             </div>
           </form>
