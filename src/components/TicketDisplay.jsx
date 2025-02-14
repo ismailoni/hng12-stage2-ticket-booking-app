@@ -26,17 +26,23 @@ const TicketDisplay = ({ userData }) => {
 
   const handleDownload = async () => {
     const ticket = document.getElementById("ticketDetails");
-
+  
     if (!ticket) return;
-
-    const canvas = await html2canvas(ticket, { backgroundColor: null }); 
+  
+    const canvas = await html2canvas(ticket, {
+      backgroundColor: null, 
+      useCORS: true,
+    });
+  
     const image = canvas.toDataURL("image/png");
-
+  
     const link = document.createElement("a");
     link.href = image;
     link.download = "ticket.png";
     link.click();
   };
+  
+  
 
   return (
     <div role="main" aria-labelledby="ticketHeader">

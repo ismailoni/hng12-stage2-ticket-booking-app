@@ -51,12 +51,17 @@ const BookingHistory = () => {
         <>
           <ul className="space-y-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {pastSubmissions.map((submission, index) => (
-              <section key={index}>
-                <div className='flex w-[300px] h-[600px] p-4 shadow-md bg-[url("/ticket-bg.svg")] mx-auto justify-center'>
-                  <section className="w-[260px] h-[446px] border border-[#24A0B5] bg-[#031E21] rounded-[16px] p-[14px] flex flex-col justify-center">
+                <section key={index} aria-labelledby="ticketDetails">
+                <h2 className="sr-only">Ticket Details</h2>
+                <div className='flex flex-col w-[300px] h-[600px] p-4 shadow-md bg-[url("/ticket-bg.svg")] mx-auto justify-center gap-[44px]'>
+                  <section
+                    className="w-[260px] h-[446px] border border-[#24A0B5] bg-[#031E21] rounded-[16px] p-[14px] flex flex-col justify-center"
+                    role="group"
+                    aria-labelledby="ticketTitle"
+                  >
                     <div className="mt-[15px] text-center mb-[20px]">
-                      <h2 className="font-roadrage text-[34px] mb-1">
-                        Techember Fest ’25
+                      <h2 id="ticketTitle" className="font-roadrage text-[34px] mb-1">
+                        Techember Fest ”25
                       </h2>
                       <p className="font-roboto text-[10px] mb-1">
                         📍 04 Rumens road, Ikoyi, Lagos
@@ -72,32 +77,57 @@ const BookingHistory = () => {
                         className="border-2 w-full h-full object-cover border-[#24A0B5] rounded-[12px]"
                       />
                     </div>
-
-                    <div className="grid grid-cols-2 font-roboto bg-[#08343C] border border-[#133D44] text-white p-1 rounded-[8px]">
-                      <div className="p-1 border-r border-b border-[#12464E]">
-                        <p className="text-[10px] text-gray-400">Full Name</p>
-                        <p className="font-bold text-xs">{submission.fullName}</p>
+        
+                    <div
+                      className="grid grid-cols-2 font-roboto bg-[#08343C] border border-[#133D44] text-white p-1 rounded-[8px] max-h-[200px] overflow-hidden"
+                      role="table"
+                    >
+                      <div
+                        className="p-1 border-r border-b border-[#12464E]"
+                        role="row"
+                      >
+                        <p className="text-[10px] text-gray-400">Enter your name</p>
+                        <p className="font-bold text-xs" role="cell">
+                          {submission.fullName}
+                        </p>
                       </div>
-                      <div className="p-1 border-b border-[#12464E]">
-                        <p className="text-[10px] text-gray-400">Email</p>
-                        <p className="font-bold text-xs">{submission.email}</p>
+                      <div className="p-1 border-b border-[#12464E]" role="row">
+                        <p className="text-[10px] text-gray-400">Enter your email *</p>
+                        <p className="font-bold text-xs" role="cell">
+                          {submission.email}
+                        </p>
                       </div>
-                      <div className="p-1 border-r border-b border-[#12464E]">
-                        <p className="text-[10px] text-gray-400">Ticket Type</p>
-                        <p className="text-[10px]">{submission.ticketType}</p>
+                      <div
+                        className="p-1 border-r border-b border-[#12464E]"
+                        role="row"
+                      >
+                        <p className="text-[10px] text-gray-400">Ticket Type:</p>
+                        <p className="text-[10px]" role="cell">
+                          {submission.ticketType}
+                        </p>
                       </div>
-                      <div className="p-1 border-b border-[#12464E]">
-                        <p className="text-[10px] text-gray-400">Ticket Amount</p>
-                        <p className="text-[10px]">{submission.ticketAmount}</p>
+                      <div className="p-1 border-b border-[#12464E]" role="row">
+                        <p className="text-[10px] text-gray-400">Ticket for:</p>
+                        <p className="text-[10px]" role="cell">
+                          {submission.ticketAmount}
+                        </p>
                       </div>
-                      <div className="p-2 col-span-2">
-                        <p className="text-[10px] text-gray-400">Special Request</p>
-                        <p className="text-[10px]">
+                      <div className="p-2 col-span-2" role="row">
+                        <p className="text-[10px] text-gray-400">Special request?</p>
+                        <p className="text-[10px]" role="cell">
                           {submission.message || "No special request"}
                         </p>
                       </div>
                     </div>
+                    <div></div>
                   </section>
+                  <div className="flex justify-center">
+                    <img
+                      src="/barcode.svg"
+                      alt="QR Code"
+                      className="w-[236px] h-[68px]"
+                    />
+                  </div>
                 </div>
               </section>
             ))}

@@ -53,7 +53,7 @@ export default {
 		fontFamily: {
 			roboto: 'var(--font-roboto)',
 			roadrage: 'var(--font-roadrage)',
-			jeju: ['"Jeju Myeongjo"'],
+			jeju: '"Jeju Myeongjo"',
 			alatsi: 'var(--font-alatsi)'
 		},
   		borderRadius: {

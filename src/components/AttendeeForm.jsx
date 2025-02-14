@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
+import { Loader2 } from "lucide-react";
 
 const AttendeeForm = ({ onNext, formData, onPrev }) => {
   const {
@@ -24,24 +25,29 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
 
   const handleImageUpload = async (file) => {
     setUploading(true);
+    // setAvatarPreview(null);
+  
     const imageData = new FormData();
     imageData.append("file", file);
     imageData.append("upload_preset", "avatar");
-
+  
     try {
       const response = await fetch(
         "https://api.cloudinary.com/v1_1/dbsm2qvi2/image/upload",
         { method: "POST", body: imageData }
       );
       const data = await response.json();
+
       setAvatarPreview(data.secure_url);
       setValue("avatar", data.secure_url, { shouldValidate: true });
+      setUploading(false);
     } catch (error) {
       console.error("Upload error:", error);
-    } finally {
       setUploading(false);
     }
   };
+  
+  
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -69,7 +75,9 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
     <div>
       <header className="mb-8">
         <div className="flex justify-between font-jeju items-center">
-          <h1 className="text-[32px]" tabIndex="0">Attendee Details</h1>
+          <h1 className="text-[32px]" tabIndex="0">
+            Attendee Details
+          </h1>
           <span tabIndex="0">Step 2/3</span>
         </div>
         <div className="mt-2 h-1 bg-[#0E464F] relative">
@@ -81,7 +89,9 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
         <div className="font-roboto text-[#fafafa]">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-8 bg-[#052228] border border-[#07373F] rounded-[24px] p-6">
-              <p id="avatarLabel" tabIndex="0">Upload Profile Photo</p>
+              <p id="avatarLabel" tabIndex="0">
+                Upload Profile Photo
+              </p>
               {/* Avatar Upload */}
               <div
                 {...getRootProps()}
@@ -91,7 +101,7 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
                 className="flex border-2 w-full h-[200px] border-black rounded-lg text-center cursor-pointer mt-8 mb-7 justify-center"
               >
                 <input {...getInputProps()} aria-describedby="avatarLabel" />
-                <div className="flex flex-row justify-center bg-[#0E464F] -mt-5 text-white rounded-[32px] border-4 border-[#24A0B5] w-[240px] h-[240px]">
+                <div className="flex flex-col items-center justify-center bg-[#0E464F] -mt-5 text-white rounded-[32px] border-4 border-[#24A0B5] w-[240px] h-[240px]">
                   {avatarPreview ? (
                     <img
                       src={avatarPreview}
@@ -99,12 +109,14 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
                       className="w-full h-full object-cover rounded-[28px]"
                     />
                   ) : uploading ? (
-                    <div className=''>
-                      <Loader2 size='3rem' className='w-6 h-6 animate-spin' />
-                      <span className='text-sm font-medium'>Uploading avatar...</span>
-                  </div>
+                    <div className="flex flex-col items-center">
+                      <Loader2 size="3rem" className="w-6 h-6 animate-spin" />
+                      <span className="text-sm font-medium">
+                        Uploading avatar...
+                      </span>
+                    </div>
                   ) : (
-                    <p className="text-white self-center max-w-[192px]">
+                    <div className="flex flex-col items-center text-center max-w-[192px]">
                       <Image
                         src="/cloud-download.svg"
                         alt="Upload icon"
@@ -115,7 +127,7 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
                       <span className="text-[16px]">
                         Drag & drop or click to upload
                       </span>
-                    </p>
+                    </div>
                   )}
                 </div>
               </div>
