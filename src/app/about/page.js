@@ -1,12 +1,10 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
 import { FiFileText } from "react-icons/fi";
 
 export default function page() {
   return (
     <div className="flex justify-center items-center font-roboto text-[16px] bg-[#041E23] ">
-      <div className="max-w-[800px] bg-transparent p-[48px] rounded-[40px] border border-[#0E464F] text-white">
+      <div className="max-w-[800px] bg-transparent p-[48px] rounded-[40px] border border-[#0E464F] text-white mt-[86px]">
         <p className="mb-8">Event Ticket Booking UI – Open Source Practice Project 🎟️</p>
         <p className="mb-8">Overview</p>
         <p className="mb-8">

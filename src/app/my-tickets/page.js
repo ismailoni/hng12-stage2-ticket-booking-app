@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 const BookingHistory = () => {
   const [pastSubmissions, setPastSubmissions] = useState([]);
-  const [showModal, setShowModal] = useState(false); // State to show/hide the modal
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const storedSubmissions = JSON.parse(localStorage.getItem("pastSubmissions")) || [];
@@ -13,7 +13,7 @@ const BookingHistory = () => {
   const clearHistory = () => {
     localStorage.removeItem("pastSubmissions");
     setPastSubmissions([]);
-    setShowModal(false); // Close modal after clearing history
+    setShowModal(false); 
   };
 
   return (
@@ -78,7 +78,6 @@ const BookingHistory = () => {
             ))}
           </ul>
 
-          {/* Clear History Button */}
           <button 
             onClick={() => setShowModal(true)} 
             className="mt-6 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
@@ -88,7 +87,6 @@ const BookingHistory = () => {
         </>
       )}
 
-      {/* Confirmation Modal */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-[#08343C] text-white p-6 rounded-lg shadow-lg w-80">

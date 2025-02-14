@@ -28,15 +28,15 @@ const TicketSelection = ({ onNext, formData }) => {
   };
 
   const handleNewBooking = () => {
-    // Retrieve past submissions from localStorage
+
     const pastSubmissions = JSON.parse(localStorage.getItem("pastSubmissions")) || [];
     
     
-    // Save current form data to past submissions
+
     pastSubmissions.push(userData);
     localStorage.setItem("pastSubmissions", JSON.stringify(pastSubmissions));
     
-    // Reset current form data without affecting past submissions
+   
     localStorage.setItem("formData", JSON.stringify({
       ticketType: "",
       ticketAmount: "1",
@@ -46,9 +46,9 @@ const TicketSelection = ({ onNext, formData }) => {
       avatar: "",
     }));
     
-    // Reset step to 1
+  
     localStorage.setItem("currentStep", "1");
-    window.location.reload(); // Refresh page to restart the form
+    window.location.reload(); 
   };
 
 
@@ -64,7 +64,7 @@ const TicketSelection = ({ onNext, formData }) => {
           <div className="bg-[#24A0B5] h-1 w-1/3"></div>
         </div>
       </header>
-      <section className="bg-[#08252B] border border-[#0E464F] rounded-[32px] p-6">
+      <section className="border border-[#0E464F] rounded-[32px] p-6 background">
         <div className="border-b-[2px] border-x-[2px] border-[#07373F] text-[#fafafa] p-6 rounded-[24px] flex flex-col text-center items-center">
           <h1 className="font-roadrage text-[48px] md:text-[62px] mb-2 transition-all">
             Techember Fest ”25

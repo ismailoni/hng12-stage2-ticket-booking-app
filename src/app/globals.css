@@ -72,5 +72,12 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-  
+  .background{
+    background: radial-gradient(
+      103.64% 57.39% at 14.02% 32.06%,
+      #24A0B533,
+      transparent
+    ),
+    rgba(10, 12, 17, 0.1)
+  }
 }
