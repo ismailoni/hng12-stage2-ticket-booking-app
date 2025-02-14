@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
-import { CloudDownloadIcon, UploadCloud } from "lucide-react";
 import Image from "next/image";
 
 const AttendeeForm = ({ onNext, formData, onPrev }) => {
@@ -107,7 +106,7 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
             <div className="w-full h-1 bg-[#07373F] my-8"></div>
             
             {/* Full Name */}
-            <label htmlFor="fullName" className="text-[#fafafa]">Enter your name: *</label>
+            <label className="text-[#fafafa]">Enter your name: *</label>
             <input
               {...register("fullName", { required: "Full name is required" })}
               className="w-full p-3 text-white mt-2 mb-8 bg-transparent border border-[#07373F] rounded-[12px]"
@@ -117,7 +116,7 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
             )}
 
             {/* Email */}
-            <label htmlFor="email" className="text-[#fafafa]">Enter your email: *</label>
+            <label className="text-[#fafafa]">Enter your email: *</label>
             <input
               {...register("email", {
                 required: "Email is required",
@@ -132,7 +131,7 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
               <p className="text-red-500">{errors.email.message}</p>
             )}
             {/* About the Project */}
-            <label htmlFor="email" className="text-[#fafafa]">Special request?</label>
+            <label className="text-[#fafafa]">Special request?</label>
             <textarea
               {...register("message")}
               className="w-full p-3 text-white mt-2 mb-8 bg-transparent border border-[#07373F] rounded-[12px]"

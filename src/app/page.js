@@ -16,7 +16,6 @@ const MultiStepForm = () => {
     avatar: "",
   });
 
-  // Load data from localStorage on mount
   useEffect(() => {
     const savedData = localStorage.getItem("formData");
     if (savedData) {
@@ -29,12 +28,10 @@ const MultiStepForm = () => {
     }
   }, []);
 
-  // Save data to localStorage whenever formData changes
   useEffect(() => {
     localStorage.setItem("formData", JSON.stringify(formData));
   }, [formData]);
 
-  // Save current step in localStorage
   useEffect(() => {
     localStorage.setItem("currentStep", step);
   }, [step]);

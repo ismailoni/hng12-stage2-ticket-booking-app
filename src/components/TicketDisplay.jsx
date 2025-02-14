@@ -1,63 +1,114 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 const TicketDisplay = ({ userData }) => {
   const handleNewBooking = () => {
-    // Retrieve past submissions from localStorage
-    const pastSubmissions = JSON.parse(localStorage.getItem("pastSubmissions")) || [];
-    
-    
-    // Save current form data to past submissions
+    const pastSubmissions =
+      JSON.parse(localStorage.getItem("pastSubmissions")) || [];
+
     pastSubmissions.push(userData);
     localStorage.setItem("pastSubmissions", JSON.stringify(pastSubmissions));
-    
-    // Reset current form data without affecting past submissions
-    localStorage.setItem("formData", JSON.stringify({
-      ticketType: "",
-      ticketAmount: "1",
-      fullName: "",
-      email: "",
-      message: "",
-      avatar: "",
-    }));
-    
-    // Reset step to 1
+
+    localStorage.setItem(
+      "formData",
+      JSON.stringify({
+        ticketType: "",
+        ticketAmount: "1",
+        fullName: "",
+        email: "",
+        message: "",
+        avatar: "",
+      })
+    );
+
     localStorage.setItem("currentStep", "1");
-    window.location.reload(); // Refresh page to restart the form
+    window.location.reload();
   };
-  
+
+  console.log(userData);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#0A192F] text-white p-6">
-      <div className="bg-[#112240] rounded-2xl shadow-lg p-8 max-w-lg text-center border border-[#1E2D45]">
-        <h2 className="text-xl font-semibold mb-4">Ready</h2>
-        <div className="border-t border-[#1E2D45] w-full mb-4"></div>
-        <h3 className="text-lg font-bold">Your Ticket is Booked!</h3>
-        <p className="text-sm text-gray-400">You can download or check your email for a copy</p>
+    <div>
+      <header className="mb-8">
+        <div className="flex justify-between font-jeju items-center">
+          <h1 className="text-[32px]">Ready</h1>
+          <span>Step 3/3</span>
+        </div>
+        <div className="mt-2 h-1 bg-[#0E464F] relative">
+          <div className="bg-[#24A0B5] h-1 w-2/5"></div>
+        </div>
+      </header>
 
-        <div className="mt-6 bg-[#0D1B2A] rounded-xl p-4 shadow-md inline-block relative">
-          <div className="flex items-center gap-4">
-            <img
-              src={userData.avatar}
-              alt="User Avatar"
-              width={50}
-              height={50}
-              className="rounded-full border border-gray-500"
-            />
-            <div className="text-left">
-              <h4 className="text-white font-medium">{userData.fullName}</h4>
-              <p className="text-gray-400 text-sm">{userData.email}</p>
+      <div className="text-center text-[#fafafa] mb-8">
+        <h2 className="font-alatsi mb-4 text-[32px]">Your Ticket is Booked!</h2>
+        <p className="font-roboto max-w-[287px] lg:max-w-full">
+          Check your email for a copy or you can download
+        </p>
+      </div>
+
+      <section className="">
+        <div className='flex w-[300px] h-[600px] inverted-radius p-4 shadow-md bg-[url("/ticket-bg.svg")] mx-auto justify-center'>
+          <section className="w-[260px] h-[446px] border border-[#24A0B5] bg-[#031E21] rounded-[16px] p-[14px] flex flex-col justify-center">
+            <div className="mt-[15px] text-center mb-[20px]">
+              <h2 className="font-roadrage text-[34px] mb-1">
+                Techember Fest ”25
+              </h2>
+              <p className="font-roboto text-[10px] mb-1">
+                📍 04 Rumens road, Ikoyi, Lagos
+              </p>
+              <p className="font-roboto text-[10px]">
+                📅 March 15, 2025 | 7:00 PM
+              </p>
             </div>
-          </div>
-          <p className="mt-4 text-sm text-gray-300">Ticket Type: <span className="font-semibold text-white">{userData.ticketType}</span></p>
-          <div className="mt-4 bg-gray-700 text-white px-4 py-2 rounded-md text-sm">{userData.ticketAmount}</div>
-        </div>
+            <div className="mb-[20px] mx-auto">
+              <img
+                src={userData.avatar}
+                alt="User Avatar"
+                className="border-2 max-w-[140px] max-h-[140px] border-[#24A0B5] rounded-[12px]"
+              />
+            </div>
 
-        <div className="mt-6 flex gap-4">
-          <Button variant="outline" className="border border-gray-600 text-white" onClick={handleNewBooking}>
-            Book Another Ticket
-          </Button>
-          <Button className="bg-blue-500 text-white">Download Ticket</Button>
+            <div className="grid grid-cols-2 font-roboto bg-[#08343C] border border-[#133D44] text-white p-1 rounded-[8px]">
+              <div className="p-1 border-r border-b border-[#12464E]">
+                <p className="text-[10px] text-gray-400">Enter your name</p>
+                <p className="font-bold text-xs">{userData.fullName}</p>
+              </div>
+              <div className="p-1 border-b border-[#12464E]">
+                <p className="text-[10px] text-gray-400">Enter your email *</p>
+                <p className="font-bold text-xs">{userData.email}</p>
+              </div>
+              <div className="p-1 border-r border-b border-[#12464E]">
+                <p className="text-[10px] text-gray-400">Ticket Type:</p>
+                <p className="text-[10px]">{userData.ticketType}</p>
+              </div>
+              <div className="p-1 border-b border-[#12464E]">
+                <p className="text-[10px] text-gray-400">Ticket for:</p>
+                <p className="text-[10px]">{userData.ticketAmount}</p>
+              </div>
+              <div className="p-2">
+                <p className="text-[10px] text-gray-400">Special request?</p>
+                <p className="text-[10px]">
+                  {userData.message || "No special request"}
+                </p>
+              </div>
+            </div>
+          </section>
         </div>
+      </section>
+
+      <div className="flex font-jeju gap-4 flex-col-reverse lg:flex-row mt-[56px]">
+        <button
+          type="button"
+          className="mt-4 w-full bg-transparent border border-[#24A0B5] hover:bg-[#24A0B5] text-white px-4 py-2 rounded-[8px] transition-all"
+          onClick={handleNewBooking}
+        >
+          Book Another Ticket
+        </button>
+        <button
+          type="button"
+          className="mt-4 bg-[#24A0B5] w-full hover:bg-transparent border border-[#24A0B5] text-white px-4 py-2 rounded-[8px] transition-all"
+        >
+          Download Ticket
+        </button>
       </div>
     </div>
   );
