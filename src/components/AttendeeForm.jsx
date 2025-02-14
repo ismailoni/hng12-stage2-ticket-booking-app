@@ -54,6 +54,7 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: "image/*",
+    multiple: false,
   });
 
   const onSubmit = (data) => {
@@ -68,56 +69,82 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
     <div>
       <header className="mb-8">
         <div className="flex justify-between font-jeju items-center">
-          <h1 className="text-[32px]">Attendee Details</h1>
-          <span>Step 2/3</span>
+          <h1 className="text-[32px]" tabIndex="0">Attendee Details</h1>
+          <span tabIndex="0">Step 2/3</span>
         </div>
         <div className="mt-2 h-1 bg-[#0E464F] relative">
           <div className="bg-[#24A0B5] h-1 w-1/2"></div>
         </div>
       </header>
+
       <section className="bg-[#08252B] border border-[#0E464F] rounded-[32px] p-6">
         <div className="font-roboto text-[#fafafa]">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-8 bg-[#052228] border border-[#07373F] rounded-[24px] p-6">
-              <p>Upload Profile Photo</p>
+              <p id="avatarLabel" tabIndex="0">Upload Profile Photo</p>
               {/* Avatar Upload */}
               <div
                 {...getRootProps()}
+                role="button"
+                aria-labelledby="avatarLabel"
+                tabIndex="0"
                 className="flex border-2 w-full h-[200px] border-black rounded-lg text-center cursor-pointer mt-8 mb-7 justify-center"
               >
-                <input {...getInputProps()} />
+                <input {...getInputProps()} aria-describedby="avatarLabel" />
                 <div className="flex flex-row justify-center bg-[#0E464F] -mt-5 text-white rounded-[32px] border-4 border-[#24A0B5] w-[240px] h-[240px]">
                   {avatarPreview ? (
                     <img
                       src={avatarPreview}
-                      alt="Avatar"
+                      alt="Uploaded avatar preview"
                       className="w-full h-full object-cover rounded-[28px]"
                     />
                   ) : (
-                    <p className="text-white self-center  max-w-[192px]">
-                      <Image src='/cloud-download.svg' alt="Upload" width={32} height={32} className="mx-auto"/>
-                      <span className="text-[16px]">Drag & drop or click to upload</span>
+                    <p className="text-white self-center max-w-[192px]">
+                      <Image
+                        src="/cloud-download.svg"
+                        alt="Upload icon"
+                        width={32}
+                        height={32}
+                        className="mx-auto"
+                      />
+                      <span className="text-[16px]">
+                        Drag & drop or click to upload
+                      </span>
                     </p>
                   )}
                 </div>
               </div>
+              {uploading && (
+                <p role="status" aria-live="polite" className="text-yellow-300">
+                  Uploading image...
+                </p>
+              )}
             </div>
 
             <div className="w-full h-1 bg-[#07373F] my-8"></div>
-            
+
             {/* Full Name */}
-            <label className="text-[#fafafa]">Enter your name: *</label>
+            <label htmlFor="fullName" className="text-[#fafafa]">
+              Enter your name: *
+            </label>
             <input
+              id="fullName"
               {...register("fullName", { required: "Full name is required" })}
               className="w-full p-3 text-white mt-2 mb-8 bg-transparent border border-[#07373F] rounded-[12px]"
+              aria-required="true"
             />
             {errors.fullName && (
-              <p className="text-red-500">{errors.fullName.message}</p>
+              <p className="text-red-500" role="alert">
+                {errors.fullName.message}
+              </p>
             )}
 
             {/* Email */}
-            <label className="text-[#fafafa]">Enter your email: *</label>
+            <label htmlFor="email" className="text-[#fafafa]">
+              Enter your email: *
+            </label>
             <input
+              id="email"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -126,13 +153,20 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
                 },
               })}
               className="w-full p-3 text-white mt-2 mb-8 bg-transparent border border-[#07373F] rounded-[12px]"
+              aria-required="true"
             />
             {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
+              <p className="text-red-500" role="alert">
+                {errors.email.message}
+              </p>
             )}
-            {/* About the Project */}
-            <label className="text-[#fafafa]">Special request?</label>
+
+            {/* Special Request */}
+            <label htmlFor="message" className="text-[#fafafa]">
+              Special request?
+            </label>
             <textarea
+              id="message"
               {...register("message")}
               className="w-full p-3 text-white mt-2 mb-8 bg-transparent border border-[#07373F] rounded-[12px]"
               placeholder="Textarea"
@@ -144,6 +178,7 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
                 type="button"
                 className="mt-4 w-full bg-transparent border border-[#24A0B5] hover:bg-[#24A0B5] text-white px-4 py-2 rounded-[8px] transition-all"
                 onClick={onPrev}
+                aria-label="Go back to the previous step"
               >
                 Back
               </button>
@@ -151,6 +186,7 @@ const AttendeeForm = ({ onNext, formData, onPrev }) => {
                 type="submit"
                 className="mt-4 bg-[#24A0B5] w-full hover:bg-transparent border border-[#24A0B5] text-white px-4 py-2 rounded-[8px] transition-all"
                 disabled={uploading}
+                aria-label="Proceed to the next step"
               >
                 {uploading ? "Uploading..." : "Get My Free Ticket"}
               </button>
