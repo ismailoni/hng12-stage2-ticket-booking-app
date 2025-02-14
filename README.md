@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Conference Ticket Generator
 
-## Getting Started
+A conference ticket booking app built using **Next.js**, **Tailwind CSS**, and **Shadcn UI** for the HNG Internship Stage 2 Frontend Task.
 
-First, run the development server:
+## 🚀 Live Demo
+[Click here to view the live app](https://hng12-stage2-ticket-booking-app.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📸 Screenshots
+(Add screenshots of your app here if needed)
+
+## 🛠 Features
+- 🎟️ **Ticket Booking** - Users can generate a digital ticket.
+- ✅ **Form Validation** - Ensures required fields are filled correctly.
+- 💡 **Modern UI** - Clean, responsive design following Figma specifications.
+- ⚡ **Fast & Optimized** - Built with Next.js for performance.
+
+## 🏗 Tech Stack
+- **Framework**: Next.js (React-based)
+- **Styling**: Tailwind CSS, Shadcn UI
+- **State Management**: React Hooks (useState, useEffect)
+
+## 🚀 Getting Started
+### Prerequisites
+Ensure you have the following installed:
+- Node.js (v16 or later)
+- npm or yarn
+
+### Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/ismailoni/hng12-stage2-ticket-booking-app.git
+   cd hng12-stage2-ticket-booking-app
+   ```
+2. Install dependencies:
+   ```sh
+   npm install  # or yarn install
+   ```
+3. Run the development server:
+   ```sh
+   npm run dev  # or yarn dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📌 Folder Structure
+```
+📦 hng12-stage2-ticket-booking-app
+├── public/        # Static assets
+├── src/           # Main source code
+│   ├── components/  # UI components
+│   ├── pages/       # Next.js pages
+│   ├── styles/      # Global styles
+├── README.md     # Documentation
+└── package.json  # Dependencies
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Deployment
+This app is deployed on Vercel. To deploy your own version:
+1. Push your code to GitHub.
+2. Connect your repo to Vercel.
+3. Deploy with a single click.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 💡 Improvements
+Future enhancements include:
+- 🎨 Improved form validation with Zod/Yup.
+- 🔄 API integration for real ticket booking.
+- 📩 Email confirmation feature.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📜 License
+This project is **open-source** and available under the MIT License.
 
-## Learn More
+## 🙌 Acknowledgements
+Built for the **HNG Internship Stage 2 Frontend Task**.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🚀 **Developed by [Ismail Oni](https://ismail-portfolio-v1.vercel.app/)**
